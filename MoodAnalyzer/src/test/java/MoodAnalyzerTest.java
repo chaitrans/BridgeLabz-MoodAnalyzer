@@ -11,21 +11,61 @@ public class MoodAnalyzerTest {
     @Test
     public void givenMessage_WhenSad_ShouldReturnSad(){
         MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Sad Mood");
-        String mood = moodAnalyzer.analyzeMood();
+        String mood = null;
+        try {
+            mood = moodAnalyzer.analyzeMood();
+        }catch (MoodAnalysisException e){
+            System.out.println(e);
+        }
         Assert.assertEquals("Sad",mood);
     }
 
     @Test
     public void givenMessage_WhenHappy_ShouldReturnHappy(){
         MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Happy Mood");
-        String mood = moodAnalyzer.analyzeMood();
-        Assert.assertEquals("Happy",mood);
+        String mood = null;
+        try{
+            mood = moodAnalyzer.analyzeMood();
+            Assert.assertEquals("Happy",mood);
+        }catch (MoodAnalysisException e){
+            System.out.println(e);
+        }
     }
 
     @Test
     public void givenNullMood_ShouldReturnHappy(){
+        String mood = null;
         MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
-        String mood = moodAnalyzer.analyzeMood();
-        Assert.assertEquals("Happy",mood);
+        try{
+             mood = moodAnalyzer.analyzeMood();
+            Assert.assertEquals("Happy",mood);
+        }catch (MoodAnalysisException e){
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenEmptyMood_ShouldReturnHappy(){
+        String mood = null;
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
+        try{
+            mood = moodAnalyzer.analyzeMood();
+            Assert.assertEquals("Happy",mood);
+        }catch (MoodAnalysisException e){
+            System.out.println(e);
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
